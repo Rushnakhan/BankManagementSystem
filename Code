@@ -1,0 +1,249 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+
+def menu():
+	print()
+	print("*******")
+	print(              "BANK MANAGEMENT SYSTEM"            )
+	print("*******")
+	print()
+	print("      0. Know about the Project")
+	print("      1. Reading bank file")
+	print("      2. Adding New bank Detail in file bank")
+	print("      3. Updating bank balance in File")
+	print("      4. Total Number of accountholder ")
+	print("      5. Sorting Balance in ascending order")
+	print("      6. Reading Few records from File Bank")
+	print("      7. Read Bank File")
+	print("      8. Adding New Account holder Information in File")
+	print("      9. Display Specific Column")
+	print("      10. Top and Bottom Records from bank file")
+	print("      11. Read Account Holder File")
+	print("      12. Adding New Account Detail in File")
+	print("      13. Display Maximum Debit")
+	print("      14. Display Minimum Debit")
+	print("      15. Line Plot")
+	print("      16. Line1 Plot")
+	print("      17. Bar Plot")
+	print("      18. Barh Plot")
+	print("      19. Exit")
+	print()
+	print()
+	print("******")
+
+
+menu()
+
+def about():
+       df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+       print(df.info())
+       df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+       print(df.info())
+       print("The Project is developed on BANK MANAGEMENT SYSTEM. It contains 19 Options.    ")
+
+
+def bank_file():
+        print ("Reading File Flight")
+        print()
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv",index_col=0)
+        print(df)
+
+def new_BankDetail():
+        print("Adding new bank detail in File bank")
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+        df.at[67,:]=["kiara","India",1032,"71 mayur vihar",9090906756,"kiara9090@gmail.com"]
+        print(df)
+def update_BankDetail():
+        print("To increase balance and save")
+        print("Previous Balance")
+        print()
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv")
+        print(df)
+        print()
+        print("increase balance by Rs.1000")
+        print()
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv")
+
+def update_BankDetail():
+        print("To increase balance and save")
+        print("Previous balance")
+        print()
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv")
+        print(df)
+        print()
+        print("increase balance by Rs.1000")
+        print()
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv")
+        df['Balance'] = df['Balance'].apply(lambda x: x + 1000 )
+        print(df)
+        print(df)
+
+def total_accountholder():
+        print('Find Total AccountHolders')
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv")
+        Total_AccountHolder=df['Balance'].sum()
+        print(Total_AccountHolder)
+
+def sort_Balance():
+        print('sorting balance in Ascenting order')
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+        
+        df=df.sort_values("Balance",ascending=True)
+        print(df)
+
+def read_BankManagement():
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv")
+        print('Show 2 Records')
+        print(df)
+
+def read_BankManagement():
+        print('Reading File Bank Management')
+        print()
+        print()
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+        print(df)
+
+def new_accountholder():
+        print('Adding new accountholder in file bank')
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv")
+        df=pd.concat([df,pd.DataFrame({'Name':['Krisha'],'Accountno':'1032','Debit':8900,'Credit':67800,'Balance':9000})] , ignore_index=True)
+        df.reset_index()
+        print(df)
+        df.to_csv("C:/Users/user/Desktop/bank mmng2.csv")
+        print(df)
+
+def spec_col():
+      df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv",usecols=['Name','Accountno','address'])
+      print(df)
+
+def top_bottom():
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv" )
+        print('top 5 rows')
+        print(df.head())
+        print()
+        print()
+        print('last 5 rows')
+        print(df.tail())
+
+def read_AccountHolder():
+        print('Reading File Bank Management - AccountHolder')
+        print()
+        print()
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv",index_col=0)
+        print(df)
+
+def new_name():
+        print('Adding new accountholder in file name')
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+        print(df)
+        df=pd.concat([df,pd.DataFrame({'Name':['Raghav'],'Country':'INDIA','Accountno':1033,'Balance':[90000],'address':'89 vasundhara','mobileno.':7632159956,'Email':'raghavgiri@gmail.com'})], ignore_index=True)
+        df.reset_index()
+        print(df)
+
+def maxDebit():
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv")
+        print(df)
+        print('Highest Debit amount of accountholder')
+        print(df["Debit"].max())
+
+def minDebit():
+        df=pd.read_csv("C:/Users/user/Desktop/bank mmng2.csv")
+        print(df)
+        print('Lowest Debit amount of accountholder')
+        print(df["Debit"].min())
+
+def line_plot():
+        print('Line plot')
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+        print(df)
+        x=df['Name'].astype('str')
+        y=df['Balance']
+        plt.title('Bank Records')
+        plt.plot(x,y,marker='x',ls="dashed",linewidth=4,color="r")
+        plt.show()
+
+def line1_plot():
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+        print(df)
+        plt.plot(df['Name'].astype('str'),df['Balance'],marker='o',label='fare')
+        plt.title('Account holder Balance')
+        plt.xlabel('AccountHolder Name')
+        plt.ylabel('Balance')
+        plt.xticks(rotation=30)
+        plt.legend()
+        plt.grid(True)
+        plt.show()
+
+def bar_plot():
+        print('bar plot')
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+        print(df)
+        x=df['Name'].astype('str')
+        y=df['Balance']
+        plt.title('Bank Management System')
+        plt.xlabel('Name')
+        plt.ylabel('Balance')
+        plt.bar(x,y,color=['red','blue'])
+        plt.show()
+
+def barh_plot():
+        print('bar plot')
+        df=pd.read_csv("C:/Users/user/Desktop/Bank management.csv")
+        print(df)
+        x=df['Name'].astype('str')
+        y=df['Balance']
+        plt.title('Bank Management System')
+        plt.xlabel('Names')
+        plt.ylabel('Balance')
+        plt.bar(x,y,color='orange',edgecolor='black')
+        plt.show()
+        
+while(True):
+        
+ opt=""
+ opt=int(input("enter your choice : "))
+ if opt==0:
+        about()
+ if opt==1:
+        bank_file()
+elif opt==2:
+        new_BankDetail()
+ elif opt==3:
+        update_BankDetail()
+ elif opt==4:
+        total_accountholder()
+ elif opt==5:
+        sort_Balance()
+ elif opt==6:
+        read_BankManagement()
+ elif opt==7:
+        new_accountholder()
+ elif opt==8:
+        spec_col()
+ elif opt==9:
+        top_bottom()
+ elif opt==10:
+        read_AccountHolder()
+ elif opt==11:
+        new_name()
+ elif opt==12:
+        maxDebit()
+ elif opt==13:
+        minDebit()
+ elif opt==14:
+        line_plot()
+ elif opt==15:
+        line1_plot()
+ elif opt==16:
+        bar_plot()
+ elif opt==17:
+        barh_plot()
+ elif opt==18:
+     exit()
+ 
+        
+ else:
+     print("invalid option")
+     print("\a")
